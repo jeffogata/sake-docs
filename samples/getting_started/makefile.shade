@@ -1,0 +1,4 @@
+#default
+   @{
+   		Log.Info("Hello world!");
+   	}
