@@ -12,7 +12,7 @@ Sake uses a custom version of the Spark view engine to process ``.shade`` files,
 
 ``log`` is part of a library of custom elements that is defined in the Sake project.  You can also create your own elements, which is documented in another page.
 
-The following ``.makefile`` illustrates the basics of working with element tags and can be run using the ``build.cmd`` file from :doc:`/getting-started/index`.  Sake requires at least one target, so we define one here named ``#default``.  Targets are explained in detail later in the documentation.
+The following ``.shade`` illustrates the basics of working with element tags and can be run using the ``build.cmd`` file from :doc:`/getting-started/index`.  Sake requires at least one target, so we define one here named ``#default``.  Targets are explained in detail later in the documentation.
 
 Interesting things to note:
 
@@ -78,7 +78,7 @@ The ``','`` argument is treated as a string, and an exception will be thrown bec
 Namespaces
 ^^^^^^^^^^
 
-Sake provides a ``use`` element that is analogous to the ``using`` directive in C#.  In the example below, ``Console`` and ``Path`` do not need to be fully qualified because the ``System`` and ``System.IO`` namespaces are specified by the ``use`` elements:
+Sake provides a ``use`` element that is analogous to the ``using`` directive in C#.  In the example below, ``Console`` and ``Directory`` do not need to be fully qualified because the ``System`` and ``System.IO`` namespaces are specified by the ``use`` elements:
 
 .. code-block:: aspx-cs
 
@@ -90,8 +90,24 @@ Sake provides a ``use`` element that is analogous to the ``using`` directive in 
 			Console.WriteLine(Directory.GetCurrentDirectory());
 		}
 
-Examples
---------
+The following ``.shade`` file shows the basics of working with C# in Sake, and also how you can work with both C# and tags in the same build file.
 
-The following example .makefile illustrates the basics of working with C# and element tags in Sake.  
+.. code-block:: aspx-cs
 
+	use namespace="System"
+
+	#default
+
+		@{
+			var now = DateTime.Now;
+
+			Console.WriteLine("Hello world using C#!");
+		}
+
+		log info="Hello world using tags!  It is ${now.ToString()}"
+
+This produces the following output::
+
+	>build.cmd
+	Hello world using C#!
+	info: Hello world using tags!  It is 11/14/2015 12:24:29 PM

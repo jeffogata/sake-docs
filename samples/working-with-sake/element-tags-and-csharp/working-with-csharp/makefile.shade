@@ -1,9 +1,13 @@
 use namespace="System"
-use namespace="System.IO"
 
 #default
+
 	@{
-		Console.WriteLine(Directory.GetCurrentDirectory());
+		var now = DateTime.Now;
+
+		Console.WriteLine("Hello world using C#!");
 	}
+
+	log info="Hello world using tags!  It is ${now.ToString()}"
 
 

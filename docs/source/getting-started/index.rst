@@ -44,7 +44,7 @@ To get started with Sake, create a directory and create the following 2 files:
 
 Run the build:
 ::
-    >build
+    >build.cmd
     Attempting to gather dependencies information for package 'Sake.0.2.2' with respect to project 'packages', targeting 'Any,Version=v0.0'
     Attempting to resolve dependencies for package 'Sake.0.2.2' with DependencyBehavior 'Lowest'
     Resolving actions to install package 'Sake.0.2.2'
