@@ -1,0 +1,42 @@
+use namespace="System"
+use namespace="System.Linq"
+use namespace="System.Reflection"
+
+-// example of a single-line comment in script
+
+-/* 
+	example of a multi-line comment in script
+
+	this file illustrates the use of single and double quotes to 
+	delimit strings in both C# and element tags.
+*/
+
+-// this element tag is not indented and will be evaluated before any indented code or tags
+log warn='Global 1'
+
+#csharp
+	@{
+		var message = "Hello C# at ";
+		Log.Info(message + DateTime.Now.ToString());
+	}
+
+#tags
+	var message='Hello tags at '
+	log info='${message + DateTime.Now.ToString()}'
+
+#version
+	@{
+		string version = Assembly
+                     .GetExecutingAssembly()
+                     .GetReferencedAssemblies()
+                     .Where(x => x.Name == "System.Core").First().Version.ToString();
+        Log.Info(version);
+	}
+
+-// this element tag will also be evaluated before any indented code or tags
+log warn="Global 2"
+
+-// as will this code block
+@{
+	Log.Warn('Global 3');
+}

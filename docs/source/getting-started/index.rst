@@ -34,9 +34,9 @@ To get started with Sake, create a directory and create the following 2 files:
 ::
 
     #default
-        @{
-   	        Log.Info("Hello world!");
-        }
+       @{
+   	      Log.Info("Hello world!");
+       }
 
 .. note:: Andrew Stanton-Nurse has a Sublime 3 package that adds colorization for .shade files:  `Sublime-Sake`_
 

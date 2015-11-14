@@ -1,0 +1,9 @@
+use namespace="System"
+use namespace="System.IO"
+
+#default
+	@{
+		Console.WriteLine(Directory.GetCurrentDirectory());
+	}
+
+

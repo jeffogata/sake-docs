@@ -11,9 +11,8 @@ Sake Documentation
    :maxdepth: 2
    :caption: Contents
 
-   getting_started
-   working_with_sake
-   integrating_with_ci
-   examples
+   getting-started/index
+   working-with-sake/index
+   examples/index
  
 
