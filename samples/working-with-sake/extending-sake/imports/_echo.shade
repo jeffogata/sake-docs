@@ -1,0 +1,5 @@
+default greeting='Hello'
+
+@{
+	Log.Info(greeting + " " + name);
+}

@@ -1,0 +1,20 @@
+use import="CustomFunctions"
+
+#default
+	@{
+		AddCustomItem('foo');
+		AddCustomItem('bar');
+		AddCustomItem('baz');
+		PrintCustomItems();
+	}
+
+#echotag
+	echo name="Bob"
+
+#echomacro
+	@{
+		Echo("Jack", "Good morning");
+	}
+
+macro name='Echo' name='string' greeting='string'
+   echo	 
