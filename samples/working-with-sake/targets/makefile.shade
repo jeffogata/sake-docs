@@ -1,0 +1,22 @@
+use namespace="System"
+
+#default
+	log info='default'
+
+#target-c .target-b
+	log info='target c'
+
+#target-a
+	log info='target a'
+
+#target-b .target-a
+	log info='target b'
+
+#target-3
+	log info='target 3'
+
+#target-1 target="target-2"
+	log info='target 1'
+
+#target-2 target="target-3"
+	log info='target 2'

@@ -6,13 +6,3 @@ Working with Sake
 
    element-tags-and-csharp
    targets
-   partials
-
-Targets
-   Default Target
-   Dependencies
-   Conditional Evaluation
-
-Partials
-   Import
-   Macros 
