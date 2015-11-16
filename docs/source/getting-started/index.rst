@@ -4,7 +4,9 @@ Getting Started
 To get started with Sake, create a directory and create the following 2 files:
 
 ``build.cmd``
-::
+
+.. code-block:: bat
+
     @echo off
     cd %~dp0
     
@@ -31,7 +33,8 @@ To get started with Sake, create a directory and create the following 2 files:
     packages\Sake\tools\Sake.exe -f makefile.shade
 
 ``makefile.shade``
-::
+
+.. code-block:: c#
 
     #default
        @{

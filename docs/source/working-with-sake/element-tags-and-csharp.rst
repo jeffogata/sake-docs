@@ -18,7 +18,8 @@ Interesting things to note:
 
 * Strings are delimited with single or double quotes.
 * Element tags that are not indented run before targets.
-::
+
+.. code-block:: c#
 
 	-// example of a single-line comment
 
@@ -45,7 +46,7 @@ Working with C#
 
 C# code can be used as a code block, delimited with ``@{`` and ``}``:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
     @{
     	var message = "Hello world!";
@@ -54,7 +55,7 @@ C# code can be used as a code block, delimited with ``@{`` and ``}``:
 
 C# can also appear in element tags, delimited with ``${`` and ``}``:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	log info="The current date and time is ${DateTime.Now.ToString()}."
 
@@ -65,13 +66,13 @@ String Delimiters
 
 As with element tags, strings in C# code can be delimited using either single or double quotes.  This raises the interesting problem of working with char variables in C#.  For example, the following code will generate an exception in a ``.shade`` file:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
    var tokens = "a,b,c".Split(',');
 
 The ``','`` argument is treated as a string, and an exception will be thrown because ``Split`` expects a char.  To work around this, cast to char:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
    var tokens = "a,b,c".Split((char)',');
 
@@ -80,7 +81,7 @@ Namespaces
 
 Sake provides a ``use`` element that is analogous to the ``using`` directive in C#.  In the example below, ``Console`` and ``Directory`` do not need to be fully qualified because the ``System`` and ``System.IO`` namespaces are specified by the ``use`` elements:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	use namespace="System"
 	use namespace="System.IO"
@@ -92,7 +93,7 @@ Sake provides a ``use`` element that is analogous to the ``using`` directive in 
 
 The following ``.shade`` file shows the basics of working with C# in Sake, and also how you can work with both C# and tags in the same build file.
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	use namespace="System"
 

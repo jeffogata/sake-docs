@@ -15,13 +15,13 @@ Dependencies
 
 To indicate that a target ``target-b`` depends on ``target-a`` to run before it, add ``.target-a`` to the declaration of ``target-b``:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	#target-b .target-a
 
 For example:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	#target-a
 		log info='target a'
@@ -41,7 +41,7 @@ When run specifying ``target-c``, the following output is produced::
 
 Dependencies can also be specified from the predecessor by using the ``target`` attribute:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	#target-1 target="target-2"
 		log info='target 1'
@@ -54,7 +54,7 @@ Dependencies can also be specified from the predecessor by using the ``target`` 
 
 Running ``target-3`` executes ``target-1`` and ``target-2`` as expected:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	>build.cmd target-3
 	info: target 1
@@ -95,7 +95,7 @@ Example
 
 ``makefile.shade``
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	use namespace="System"
 

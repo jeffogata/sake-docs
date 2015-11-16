@@ -48,7 +48,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'sake.docs'
+project = u'Sake Documentation'
 copyright = u'2015, Jeff Ogata'
 author = u'Jeff Ogata'
 

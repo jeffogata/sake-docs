@@ -10,7 +10,7 @@ Custom Functions
 
 Import files can contain C# functions and classes in a functions code block:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	use namespace="System"
 	use namespace="System.Collections.Generic"
@@ -40,7 +40,7 @@ Import files can contain C# functions and classes in a functions code block:
 
 These functions can be included in another ``.shade`` file using the ``import`` element:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	use import="CustomFunctions"
 
@@ -66,7 +66,7 @@ Import files can also be used to create custom element tags.  To create a custom
 
 The following simple example defines a default value of ``"Hello"`` for the ``greeting`` attribute.  A value will be required for the ``name`` attribute when the element is used.
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	default greeting='Hello'
 
@@ -76,7 +76,7 @@ The following simple example defines a default value of ``"Hello"`` for the ``gr
 
 If the sample above is saved as ``_echo.shade``, it can be used in a target like so:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	#echotag
 		echo name="Bob"
@@ -88,14 +88,14 @@ If the sample above is saved as ``_echo.shade``, it can be used in a target like
 
 To use a custom element in C# code, you can define a ``macro``:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	macro name='Echo' name='string' greeting='string'
    		echo	 
 
 The macro can then be called as you would a C# function:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	#echomacro
 		@{
@@ -136,7 +136,7 @@ The following files include the code samples in this page.  The ``build.cmd`` fi
 
 Save the ``makefile.shade`` file in the same folder as the ``build.cmd`` file:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	use import="CustomFunctions"
 
@@ -163,7 +163,7 @@ Create an ``imports`` folder within the folder containing the ``build.cmd`` file
 
 ``CustomFunctions.shade``:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	use namespace="System"
 	use namespace="System.Collections.Generic"
@@ -193,7 +193,7 @@ Create an ``imports`` folder within the folder containing the ``build.cmd`` file
 
 ``_echo.shade``:
 
-.. code-block:: aspx-cs
+.. code-block:: c#
 
 	default greeting='Hello'
 
