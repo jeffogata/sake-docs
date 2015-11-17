@@ -17,20 +17,20 @@ To indicate that a target ``target-b`` depends on ``target-a`` to run before it,
 
 .. code-block:: c#
 
-	#target-b .target-a
+   #target-b .target-a
 
 For example:
 
 .. code-block:: c#
 
-	#target-a
-		log info='target a'
+   #target-a
+      log info='target a'
 
-	#target-b .target-a
-		log info='target b'
+   #target-b .target-a
+      log info='target b'
 
-	#target-c .target-b
-		log info='target c'
+   #target-c .target-b
+      log info='target c'
 
 When run specifying ``target-c``, the following output is produced::
 
@@ -43,14 +43,14 @@ Dependencies can also be specified from the predecessor by using the ``target`` 
 
 .. code-block:: c#
 
-	#target-1 target="target-2"
-		log info='target 1'
+   #target-1 target="target-2"
+      log info='target 1'
 
-	#target-2 target="target-3"
-		log info='target 2'
+   #target-2 target="target-3"
+      log info='target 2'
 
-	#target-3
-		log info='target 3'
+   #target-3
+      log info='target 3'
 
 Running ``target-3`` executes ``target-1`` and ``target-2`` as expected:
 
@@ -66,56 +66,11 @@ Example
 
 ``build.cmd``
 
-.. code-block:: bat
-
-	@echo off
-	cd %~dp0
-
-	SETLOCAL
-	SET NUGET_VERSION=latest
-	SET CACHED_NUGET=%LocalAppData%\NuGet\nuget.%NUGET_VERSION%.exe
-
-	IF EXIST %CACHED_NUGET% goto copynuget
-	echo Downloading latest version of NuGet.exe...
-
-	IF NOT EXIST %LocalAppData%\NuGet md %LocalAppData%\NuGet
-	@powershell -NoProfile -ExecutionPolicy unrestricted -Command "$ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest 'https://dist nuget.org/win-x86-commandline/%NUGET_VERSION%/nuget.exe' -OutFile '%CACHED_NUGET%'"
-
-	:copynuget
-	IF EXIST .nuget\nuget.exe goto restore
-	md .nuget
-	copy %CACHED_NUGET% .nuget\nuget.exe > nul
-
-	:restore
-	IF EXIST packages\Sake goto run
-	.nuget\NuGet.exe install Sake -ExcludeVersion -Source https://www.nuget.org/api/v2/ -Out packages
-
-	:run
-	packages\Sake\tools\Sake.exe -f makefile.shade %*
+.. literalinclude:: ../../samples/working-with-sake/targets/build.cmd
+		:language: bat
+		:emphasize-lines: 24
 
 ``makefile.shade``
 
-.. code-block:: c#
-
-	use namespace="System"
-
-	#default
-		log info='default'
-
-	#target-c .target-b
-		log info='target c'
-
-	#target-a
-		log info='target a'
-
-	#target-b .target-a
-		log info='target b'
-
-	#target-3
-		log info='target 3'
-
-	#target-1 target="target-2"
-		log info='target 1'
-
-	#target-2 target="target-3"
-		log info='target 2'
+.. literalinclude:: ../../samples/working-with-sake/targets/makefile.shade
+		:language: c#

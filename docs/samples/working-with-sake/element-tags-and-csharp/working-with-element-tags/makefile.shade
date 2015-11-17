@@ -1,13 +1,13 @@
 -// example of a single-line comment
 
 -/* 
-	example of a 
-	multi-line comment
+   example of a 
+   multi-line comment
 */
 
 log warn="This executes first."
 
 #default
-	log info='Hello world'
+   log info='Hello world'
 
 log warn="This also executes before the target."

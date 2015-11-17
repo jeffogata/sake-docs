@@ -2,24 +2,24 @@ use namespace="System"
 use namespace="System.Collections.Generic"
 
 functions
-	@{
-		private List<CustomItem> _items = new List<CustomItem>();
+   @{
+      private List<CustomItem> _items = new List<CustomItem>();
 
-		public void AddCustomItem(string name)
-		{
-			_items.Add(new CustomItem { Name = name });
-		}
+      public void AddCustomItem(string name)
+      {
+         _items.Add(new CustomItem { Name = name });
+      }
 
-		public void PrintCustomItems()
-		{
-			foreach(var item in _items)
-			{
-				Console.WriteLine(item.Name);
-			}
-		}
+      public void PrintCustomItems()
+      {
+         foreach(var item in _items)
+         {
+            Console.WriteLine(item.Name);
+         }
+      }
 
-		public class CustomItem
-		{
-			public string Name { get; set; }
-		}
-	}
+      public class CustomItem
+      {
+         public string Name { get; set; }
+      }
+   }

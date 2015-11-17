@@ -19,21 +19,8 @@ Interesting things to note:
 * Strings are delimited with single or double quotes.
 * Element tags that are not indented run before targets.
 
-.. code-block:: c#
-
-	-// example of a single-line comment
-
-	-/* 
-		example of a 
-		multi-line comment
-	*/
-
-	log warn="This executes first."
-
-	#default
-		log info='Hello world'
-
-	log warn="This also executes before the target."
+.. literalinclude:: ../../samples/working-with-sake/element-tags-and-csharp/working-with-element-tags/makefile.shade
+		:language: c#
 
 Running the file above produces the following output::
 
@@ -48,16 +35,16 @@ C# code can be used as a code block, delimited with ``@{`` and ``}``:
 
 .. code-block:: c#
 
-    @{
-    	var message = "Hello world!";
-    	Log.Info(message);
-    }
+   @{
+      var message = "Hello world!";
+      Log.Info(message);
+   }
 
 C# can also appear in element tags, delimited with ``${`` and ``}``:
 
 .. code-block:: c#
 
-	log info="The current date and time is ${DateTime.Now.ToString()}."
+   log info="The current date and time is ${DateTime.Now.ToString()}."
 
 .. note:: Version 0.2.2 of Sake targets .NET 4.0, which corresponds to C# 4.
 
@@ -83,29 +70,18 @@ Sake provides a ``use`` element that is analogous to the ``using`` directive in 
 
 .. code-block:: c#
 
-	use namespace="System"
-	use namespace="System.IO"
+   use namespace="System"
+   use namespace="System.IO"
 
-	#default
-		@{
-			Console.WriteLine(Directory.GetCurrentDirectory());
-		}
+   #default
+      @{
+         Console.WriteLine(Directory.GetCurrentDirectory());
+      }
 
 The following ``.shade`` file shows the basics of working with C# in Sake, and also how you can work with both C# and tags in the same build file.
 
-.. code-block:: c#
-
-	use namespace="System"
-
-	#default
-
-		@{
-			var now = DateTime.Now;
-
-			Console.WriteLine("Hello world using C#!");
-		}
-
-		log info="Hello world using tags!  It is ${now.ToString()}"
+.. literalinclude:: ../../samples/working-with-sake/element-tags-and-csharp/working-with-csharp/makefile.shade
+		:language: c#
 
 This produces the following output::
 

@@ -10,47 +10,14 @@ Custom Functions
 
 Import files can contain C# functions and classes in a functions code block:
 
-.. code-block:: c#
-
-	use namespace="System"
-	use namespace="System.Collections.Generic"
-
-	functions
-		@{
-			private List<CustomItem> _items = new List<CustomItem>();
-
-			public void AddCustomItem(string name)
-			{
-				_items.Add(new CustomItem { Name = name });
-			}
-
-			public void PrintCustomItems()
-			{
-				foreach(var item in _items)
-				{
-					Console.WriteLine(item.Name);
-				}
-			}
-
-			public class CustomItem
-			{
-				public string Name { get; set; }
-			}
-		}
+.. literalinclude:: ../../samples/working-with-sake/extending-sake/imports/CustomFunctions.shade
+		:language: c#
 
 These functions can be included in another ``.shade`` file using the ``import`` element:
 
-.. code-block:: c#
-
-	use import="CustomFunctions"
-
-	#default
-		@{
-			AddCustomItem('foo');
-			AddCustomItem('bar');
-			AddCustomItem('baz');
-			PrintCustomItems();
-		}
+.. literalinclude:: ../../samples/working-with-sake/extending-sake/makefile.shade
+		:language: c#
+		:lines: 1-9
 
 Running this produces the following output::
 
@@ -66,137 +33,54 @@ Import files can also be used to create custom element tags.  To create a custom
 
 The following simple example defines a default value of ``"Hello"`` for the ``greeting`` attribute.  A value will be required for the ``name`` attribute when the element is used.
 
-.. code-block:: c#
-
-	default greeting='Hello'
-
-	@{
-		Log.Info(greeting + " " + name);
-	}
+.. literalinclude:: ../../samples/working-with-sake/extending-sake/imports/_echo.shade
+		:language: c#
 
 If the sample above is saved as ``_echo.shade``, it can be used in a target like so:
 
-.. code-block:: c#
+.. literalinclude:: ../../samples/working-with-sake/extending-sake/makefile.shade
+		:language: c#
+		:lines: 11-12
 
-	#echotag
-		echo name="Bob"
-
-::
+Running the ``echotag`` target produces the following output::
 
 	>build.cmd echotag
 	info: Hello Bob
 
 To use a custom element in C# code, you can define a ``macro``:
 
-.. code-block:: c#
-
-	macro name='Echo' name='string' greeting='string'
-   		echo	 
+.. literalinclude:: ../../samples/working-with-sake/extending-sake/makefile.shade
+		:language: c#
+		:lines: 19-20
 
 The macro can then be called as you would a C# function:
 
-.. code-block:: c#
-
-	#echomacro
-		@{
-			Echo("Jack", "Good morning");
-		}
+.. literalinclude:: ../../samples/working-with-sake/extending-sake/makefile.shade
+		:language: c#
+		:lines: 14-17
 
 Examples
 ^^^^^^^^
 
 The following files include the code samples in this page.  The ``build.cmd`` file calls Sake specifying an import folder:
 
-.. code-block:: bat
-
-	@echo off
-	cd %~dp0
-
-	SETLOCAL
-	SET NUGET_VERSION=latest
-	SET CACHED_NUGET=%LocalAppData%\NuGet\nuget.%NUGET_VERSION%.exe
-
-	IF EXIST %CACHED_NUGET% goto copynuget
-	echo Downloading latest version of NuGet.exe...
-
-	IF NOT EXIST %LocalAppData%\NuGet md %LocalAppData%\NuGet
-	@powershell -NoProfile -ExecutionPolicy unrestricted -Command "$ProgressPreference = 'SilentlyContinue'; Invoke-WebRequest 'https://dist nuget.org/win-x86-commandline/%NUGET_VERSION%/nuget.exe' -OutFile '%CACHED_NUGET%'"
-
-	:copynuget
-	IF EXIST .nuget\nuget.exe goto restore
-	md .nuget
-	copy %CACHED_NUGET% .nuget\nuget.exe > nul
-
-	:restore
-	IF EXIST packages\Sake goto run
-	.nuget\NuGet.exe install Sake -ExcludeVersion -Source https://www.nuget.org/api/v2/ -Out packages
-
-	:run
-	packages\Sake\tools\Sake.exe -I imports -f makefile.shade %*
+.. literalinclude:: ../../samples/working-with-sake/extending-sake/build.cmd
+		:language: bat
+		:emphasize-lines: 24
 
 Save the ``makefile.shade`` file in the same folder as the ``build.cmd`` file:
 
-.. code-block:: c#
-
-	use import="CustomFunctions"
-
-	#default
-		@{
-			AddCustomItem('foo');
-			AddCustomItem('bar');
-			AddCustomItem('baz');
-			PrintCustomItems();
-		}
-
-	#echotag
-		echo name="Bob"
-
-	#echomacro
-		@{
-			Echo("Jack", "Good morning");
-		}
-
-	macro name='Echo' name='string' greeting='string'
-	   echo	 
+.. literalinclude:: ../../samples/working-with-sake/extending-sake/makefile.shade
+		:language: c#
 
 Create an ``imports`` folder within the folder containing the ``build.cmd`` file and create the following files in it.
 
 ``CustomFunctions.shade``:
 
-.. code-block:: c#
-
-	use namespace="System"
-	use namespace="System.Collections.Generic"
-
-	functions
-		@{
-			private List<CustomItem> _items = new List<CustomItem>();
-
-			public void AddCustomItem(string name)
-			{
-				_items.Add(new CustomItem { Name = name });
-			}
-
-			public void PrintCustomItems()
-			{
-				foreach(var item in _items)
-				{
-					Console.WriteLine(item.Name);
-				}
-			}
-
-			public class CustomItem
-			{
-				public string Name { get; set; }
-			}
-		}
+.. literalinclude:: ../../samples/working-with-sake/extending-sake/imports/CustomFunctions.shade
+		:language: c#
 
 ``_echo.shade``:
 
-.. code-block:: c#
-
-	default greeting='Hello'
-
-	@{
-		Log.Info(greeting + " " + name);
-	}
+.. literalinclude:: ../../samples/working-with-sake/extending-sake/imports/_echo.shade
+		:language: c#

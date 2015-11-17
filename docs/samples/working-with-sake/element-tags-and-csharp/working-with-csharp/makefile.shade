@@ -2,12 +2,10 @@ use namespace="System"
 
 #default
 
-	@{
-		var now = DateTime.Now;
+   @{
+      var now = DateTime.Now;
 
-		Console.WriteLine("Hello world using C#!");
-	}
+      Console.WriteLine("Hello world using C#!");
+   }
 
-	log info="Hello world using tags!  It is ${now.ToString()}"
-
-
+   log info="Hello world using tags!  It is ${now.ToString()}"
