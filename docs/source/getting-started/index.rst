@@ -1,7 +1,7 @@
 Getting Started
 ===============
 
-To get started with Sake, create a directory and create the following 2 files:
+To get started with Sake, create a directory and create the following two files:
 
 ``build.cmd``
 
@@ -14,6 +14,8 @@ To get started with Sake, create a directory and create the following 2 files:
         :language: c#
 
 .. note:: Andrew Stanton-Nurse has a Sublime 3 package that adds colorization for .shade files:  `Sublime-Sake`_
+
+.. note:: The Spark view engine supports template files using off-side rule formatting where indentation denotes structure, as in Python, Jade, and Haml.  These files have a ``.shade`` file extension to differentate them from ``.spark`` template files, which use opening and closing tags for structure.
 
 .. _Sublime-Sake: https://github.com/anurse/Sublime-Sake
 
