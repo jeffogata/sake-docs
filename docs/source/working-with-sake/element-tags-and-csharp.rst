@@ -1,18 +1,16 @@
 Element Tags and C#
 ===================
 
-This page shows how to work with element tags and C# in a Sake ``.shade`` file.  
+``.shade`` files use an offside-rule format, like Python, Jade, or Haml, which means that indentation determines structure.  ``.shade`` templates can contain a mix of element tags and C# code.  The concept of element tags in a ``.shade`` file makes sense when you consider that ``.shade`` files are templates processed by the Spark view engine into a dynamically generated class.  Originally, these classes would have been used to generate a response in a web site (think Razor and ``.cshtml`` files); Sake repurposes Spark to process ``.shade`` template files into classes that run a build.
 
 Working with Element Tags
 -------------------------
 
-Sake uses a custom version of the Spark view engine to process ``.shade`` files, which allows for the use of custom element tags.  In the example below, ``log`` is an element tag with an attribute named ``info``::
+Sake comes with a `standard set`_ of element tags, like ``exec`` and ``log``, and you can also create your own :ref:`custom-element-tags`.  A ``.shade`` file will also use element tags from Spark, like ``use`` and ``macro``.  See the `Spark elements reference`_ for more information.
 
-    log info='testing'
+.. note::  I have not tried to use all of the Spark elements in a Sake build file, and some may not make sense to use in a build file, or may not work as described in the Spark documentation.
 
-``log`` is part of a library of custom elements that is defined in the Sake project.  You can also create your own elements, which is documented in another page.
-
-The following ``.shade`` illustrates the basics of working with element tags and can be run using the ``build.cmd`` file from :doc:`/getting-started/index`.  Sake requires at least one target, so we define one here named ``#default``.  Targets are explained in detail later in the documentation.
+The following ``.shade`` file illustrates the basics of working with element tags and can be run using the ``build.cmd`` file from :doc:`/getting-started/index`.  Sake requires at least one target, so we define one here named ``#default``.  :ref:`targets` are explained in detail later in the documentation.
 
 Interesting things to note:
 
@@ -27,6 +25,9 @@ Running the file above produces the following output::
 	warn: This executes first.
 	warn: This also executes before the target.
 	info: Hello world
+
+.. _`standard set`: https://github.com/sakeproject/sake/tree/master/src/Sake.Library/Shared
+.. _`Spark elements reference`: https://github.com/SparkViewEngine/spark/wiki/Elements-Reference
 
 Working with C#
 ---------------
@@ -66,7 +67,7 @@ The ``','`` argument is treated as a string, and an exception will be thrown bec
 Namespaces
 ^^^^^^^^^^
 
-Sake provides a ``use`` element that is analogous to the ``using`` directive in C#.  In the example below, ``Console`` and ``Directory`` do not need to be fully qualified because the ``System`` and ``System.IO`` namespaces are specified by the ``use`` elements:
+The ``use`` element is analogous to the ``using`` directive in C#.  In the example below, ``Console`` and ``Directory`` do not need to be fully qualified because the ``System`` and ``System.IO`` namespaces are specified by the ``use`` elements:
 
 .. code-block:: c#
 

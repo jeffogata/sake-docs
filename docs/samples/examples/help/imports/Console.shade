@@ -1,0 +1,62 @@
+
+use namespace="System"
+use namespace="System.IO"
+
+functions
+   @{
+      void WriteLine(string text, string colorText)
+      {
+         ConsoleColor color;
+
+         if (Enum.TryParse<ConsoleColor>(colorText, true, out color))
+         {
+            WriteLine(text, color);
+            return;
+         }         
+
+         WriteLine(text);
+      }
+
+      void WriteLine(string text = null, ConsoleColor? color = null)
+      {
+         if (text != null && color != null)
+         {
+            Console.ForegroundColor = color.Value;
+         }
+
+         Console.WriteLine(text);
+
+         if (text != null && color != null)
+         {
+            Console.ResetColor();
+         }
+      }
+
+      void Write(string text, string colorText)
+      {
+         ConsoleColor color;
+
+         if (Enum.TryParse<ConsoleColor>(colorText, true, out color))
+         {
+            Write(text, color);
+            return;
+         }         
+
+         Write(text);
+      }
+
+      void Write(string text = null, ConsoleColor? color = null)
+      {
+         if (text != null && color != null)
+         {
+            Console.ForegroundColor = color.Value;
+         }
+
+         Console.Write(text);
+
+         if (text != null && color != null)
+         {
+            Console.ResetColor();
+         }
+      }
+   }

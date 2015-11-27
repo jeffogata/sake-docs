@@ -20,3 +20,12 @@ use namespace="System"
 
 #target-2 target="target-3"
    log info='target 2'
+
+#target-x
+   log info='target x'
+
+#target-y
+   log info='target y'
+
+#target-z .target-y .target-x
+   log info='target z'

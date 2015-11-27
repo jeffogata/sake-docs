@@ -1,0 +1,17 @@
+use namespace="System.Linq"
+use import="Console"
+
+#default
+   @{
+      WriteLine();
+      WriteLine("   Colors in ConsoleColor", "yellow");
+      WriteLine("   ======================", "cyan");
+      foreach(var color in Enum.GetValues(typeof(ConsoleColor)).Cast<ConsoleColor>())
+      {
+         Write("   ");
+         WriteLine(color.ToString(), color);
+      }
+      WriteLine();
+      WriteLine("   ======================", "cyan");
+      WriteLine();
+   }

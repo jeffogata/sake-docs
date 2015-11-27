@@ -1,0 +1,23 @@
+use import="Console"
+use import="Help"
+
+#default description="Comprehensive|Performs a full clean, build and test"
+
+#clean description="Build|Remove artifacts of a previous build"
+
+#dnx description="Build|Check for and install DNX."
+
+#restore description="Build|Restore packages for the project"
+
+#build description="Build|Build the project"
+
+#alltest description="Test|Run all tests"
+
+#unittest description="Test|Run unit tests"
+
+#inttest description="Test|Run integration tests"
+
+#help description="Help|Displays a list of build commands"
+   @{
+      WriteHelp();
+   }

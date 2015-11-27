@@ -1,3 +1,5 @@
+.. _targets:
+
 Targets
 =======
 
@@ -60,6 +62,31 @@ Running ``target-3`` executes ``target-1`` and ``target-2`` as expected:
 	info: target 1
 	info: target 2
 	info: target 3
+
+Multiple Dependencies
+---------------------
+
+To specify multiple dependencies, list them in order in the definition of the target:
+
+.. code-block:: c#
+
+   #target-x
+      log info='target x'
+
+   #target-y
+      log info='target y'
+
+   #target-z .target-y .target-x
+      log info='target z'
+
+Note that ``.target-y`` appears before ``.target-x`` in the dependency list, and when ``target-z`` is run, ``target-y`` is run before ``target-x``:
+
+.. code-block:: c#
+
+   >build.cmd target-z
+   info: target y
+   info: target x
+   info: target z
 
 Example
 -------

@@ -1,7 +1,7 @@
 Extending Sake
 --------------
 
-``.shade`` files containing functions, classes, or custom element tags can be imported into the primary build file.  These files can be placed in a directlry, which is then provided to Sake using the ``I`` argument.  For example, the following command would run Sake with import files in a directory named ``imports``::
+``.shade`` files containing functions, classes, or custom element tags can be imported into the primary build file.  These files can be placed in a directory, which is then provided to Sake using the ``I`` argument.  For example, the following command would run Sake with import files in a directory named ``imports``::
 
 	Sake.exe -I imports -f makefile.shade %*
 
@@ -25,6 +25,8 @@ Running this produces the following output::
 	foo
 	bar
 	baz
+
+.. _custom-element-tags:
 
 Custom Element Tags
 ^^^^^^^^^^^^^^^^^^^

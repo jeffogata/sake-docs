@@ -2,7 +2,7 @@
 Sake Documentation
 ==================
 
-`Sake`_ is a C# language enabled make system and is used to build the projects that comprise the `ASP.NET 5`_ stack.  Sake uses the Spark view engine, and additional insight into working with Sake can be gained from reviewing `Spark`_.
+`Sake`_ is a C# language enabled make system and is used to build the projects that comprise the `ASP.NET 5`_ stack.  Sake uses a custom build of the Spark view engine, and additional insight into working with Sake can be gained from reviewing `Spark`_.
 
 .. note:: I pronounce "Sake" as rhyming with "make".  This seems to make the most sense, whether you consider "Sake" to be a blend of "CS make", or "Spark make", and it avoids confusion when discussing it along with psake (PowerShell make), which is pronounced as the Japanese rice wine.
 
