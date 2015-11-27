@@ -1,0 +1,8 @@
+
+#default .build
+
+#clean
+	msbuild projectFile="src/SakeMsBuild.sln" outputDir="../../output" extra="/t:Clean"
+
+#build .clean
+	msbuild projectFile="src/SakeMsBuild.sln" outputDir="../../output" extra="/t:Rebuild /m"

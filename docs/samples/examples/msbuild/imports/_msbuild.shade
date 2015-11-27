@@ -1,0 +1,55 @@
+@{/*
+
+build 
+    Executes msbuild to compile your project or solution
+
+projectFile='' 
+    Required. Path to the project or solution file to build.
+
+configuration='Release'
+    Determines which configuration to use when building.
+
+outputDir=''
+    Directs all compiler outputs into the target path. Note:  this will be relative to the project files (not the solution file if building a solution).
+
+extra=''
+    Additional commandline parameters for msbuild
+
+*/}
+
+default configuration='Release'
+default outputDir=''
+default extra=''
+
+use namespace="System"
+use namespace="System.IO"
+use namespace="System.Reflection"
+
+var buildProgram=''
+
+@{
+   Assembly buildUtilities = null;
+   string toolsVersion = null;
+
+   try
+   {
+      buildUtilities = Assembly.Load("Microsoft.Build.Utilities.Core, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a");
+      toolsVersion = "14.0";
+   }
+   catch
+   {
+      buildUtilities = Assembly.Load("Microsoft.Build.Utilities.v12.0, Version=12.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a");
+      toolsVersion = "12.0";
+   }
+
+   var helper = buildUtilities.GetType("Microsoft.Build.Utilities.ToolLocationHelper");
+   var method = helper.GetMethod("GetPathToBuildTools", new Type[] { typeof(string) } );
+   var path = method.Invoke(helper, new object[] { toolsVersion }).ToString();
+
+   buildProgram = Path.Combine(path, "msbuild.exe");
+}
+
+var OutDirProperty=''
+set OutDirProperty='OutDir=${outputDir}${Path.DirectorySeparatorChar};' if='!string.IsNullOrWhiteSpace(outputDir)'
+
+exec program="${buildProgram}" commandline='${projectFile} "/p:${OutDirProperty}Configuration=${configuration}" ${extra}'
